@@ -11,16 +11,18 @@ using prt405assignment1;
 
 namespace prt405assignment1.Controllers
 {
+    //for controller
     public class infotablesController : Controller
     {
         private PersonalDetailsEntities db = new PersonalDetailsEntities();
 
         // GET: infotables
+        // function for identifying user
         public ActionResult Index()
         {
-            if(Checkuserauth()== true)
+            if (Checkuserauth() == true)
             {
-                if (checkadmnin()== true)
+                if (checkadmnin() == true)
                 {
                     var infotables = db.infotables.Include(i => i.AspNetUser);
                     return View(infotables);
@@ -36,7 +38,7 @@ namespace prt405assignment1.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            
+
         }
 
         // GET: infotables/Details/5
