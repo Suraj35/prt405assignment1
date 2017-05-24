@@ -70,8 +70,10 @@ namespace prt405assignment1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,Uid,FirstName,LastName,Email,Address,City,PhoneNumber")] infotable infotable)
         {
+            infotable.Uid = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
+
                 db.infotables.Add(infotable);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -104,6 +106,7 @@ namespace prt405assignment1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,Uid,FirstName,LastName,Email,Address,City,PhoneNumber")] infotable infotable)
         {
+            infotable.Uid = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Entry(infotable).State = EntityState.Modified;
